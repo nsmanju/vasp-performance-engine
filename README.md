@@ -2,12 +2,14 @@
 
 High-performance VASP compliance screening - Direct call O(1) hash.
 
+![Architecture Comparison](docs/architecture.png)
+
 ## Benchmark
 | Metric | Value |
 |--------|-------|
 | Throughput | **514,463 checks/sec** |
 | Data Structure | `unordered_set` O(1) |
-| Blacklist | 5,000 entries (17 real + 4982 synthetic + 1 BTC) |
+| Blacklist | 5,000 entries |
 | Build | C++17 -O3 + pybind11 |
 | Compliance | SFC Travel Rule HKD 8000 |
 
