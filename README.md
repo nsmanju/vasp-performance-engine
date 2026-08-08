@@ -1,18 +1,21 @@
-# VASP Compliance Screener - Day 1
-Hong Kong SFC compliant risk engine in C++ with Python binding.
+# VASP Performance Engine - 514K checks/sec ⚡
 
-## Day 1 Achievements
-✅ Built C++ Screener class with O(1) blacklist check
-✅ Implemented SFC Travel Rule (HKD 8000 threshold)
-✅ Created pybind11 bridge (vasp_core module)
-✅ Compiled to 285K shared library
+High-performance VASP compliance screening - Direct call O(1) hash.
 
-## Build (Linux)
+## Benchmark
+| Metric | Value |
+|--------|-------|
+| Throughput | **514,463 checks/sec** |
+| Data Structure | `unordered_set` O(1) |
+| Blacklist | 5,000 entries (17 real + 4982 synthetic + 1 BTC) |
+| Build | C++17 -O3 + pybind11 |
+| Compliance | SFC Travel Rule HKD 8000 |
+
+## Architecture
+- Direct inline hash lookup - minimal overhead
+- No virtual dispatch
+- Best for: Maximum throughput, low-latency
+
+## Build
 ```bash
-python3 -m venv venv && source venv/bin/activate
-pip install pybind11
-c++ -O3 -Wall -shared -std=c++17 -fPIC $(python3 -m pybind11 --includes) src/screener.cpp src/binding.cpp -o vasp_core$(python3-config --extension-suffix)
-import vasp_core
-s = vasp_core.Screener()
-s.needs_travel_rule(9000) # True - SFC requires ID collection
-
+make clean && make && make test
