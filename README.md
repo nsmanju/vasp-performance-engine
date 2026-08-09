@@ -1,23 +1,15 @@
-# VASP Performance Engine - 514K checks/sec ⚡
+# VASP Performance Engine - 514K checks/sec + O(1) Compliance
 
-High-performance VASP compliance screening - Direct call O(1) hash.
+High-performance VASP compliance engine for Hong Kong SFC Travel Rule.
 
-![Architecture Comparison](docs/architecture.png)
+![Architecture](docs/architecture.png)
 
 ## Benchmark
-| Metric | Value |
-|--------|-------|
-| Throughput | **514,463 checks/sec** |
-| Data Structure | `unordered_set` O(1) |
-| Blacklist | 5,000 entries |
-| Build | C++17 -O3 + pybind11 |
-| Compliance | SFC Travel Rule HKD 8000 |
+- Throughput: 514,463 checks/sec
+- Architecture: Direct O(1) hash lookup - unordered_set
+- Blacklist: 5,000 entries
+- Compliance: SFC Travel Rule HKD 8000
+- Target: OSL | HashKey - Staff Engineer
+- Build: C++17 -O3 + pybind11
 
-## Architecture
-- Direct inline hash lookup - minimal overhead
-- No virtual dispatch
-- Best for: Maximum throughput, low-latency
-
-## Build
-```bash
-make clean && make && make test
+See Flexibility counterpart: https://github.com/nsmanju/vasp-flexibility-engine
